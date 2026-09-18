@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Historique Véhicule - GaragePro</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background: #f1f5f9; color: #1e293b; }
+        .container { max-width: 1000px; margin: auto; }
+        .header-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; border-left: 5px solid #2563eb; }
+        .header-card h1 { margin: 0 0 10px 0; color: #2563eb; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .timeline-item { border-left: 3px solid #cbd5e1; padding-left: 15px; margin-bottom: 20px; position: relative; }
+        .timeline-item::before { content: '•'; position: absolute; left: -8px; top: -5px; font-size: 24px; color: #2563eb; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; display: inline-block; }
+        .badge-attente { background: #fef3c7; color: #d97706; }
+        .badge-diagnostic { background: #e0e7ff; color: #4338ca; }
+        .badge-cours { background: #dbeafe; color: #1d4ed8; }
+        .badge-termine { background: #dcfce7; color: #15803d; }
+        .badge-livre { background: #f3e8ff; color: #6b21a8; }
+        .btn-back { display: inline-block; background: #64748b; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="/vehicules" class="btn-back">⬅️ Retour aux Véhicules</a>
+
+    <div class="header-card">
+        <h1>🚗 Historique du Véhicule</h1>
+        <div class="info-grid">
+            <div>
+                <p><strong>Modèle :</strong> {{ vehicule.marque_modele }}</p>
+                <p><strong>Immatriculation :</strong> {{ vehicule.immatriculation }}</p>
+            </div>
+            <div>
+                <p><strong>Propriétaire :</strong> {{ vehicule.client_nom or 'Non assigné' }}</p>
+                <p><strong>Téléphone :</strong> {{ vehicule.client_telephone or 'N/A' }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>📜 Carnet d'Interventions dans l'Atelier</h2>
+        {% if interventions %}
+            {% for item in interventions %}
+                <div class="timeline-item">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <strong>Fiche #{{ item.id }}</strong>
+                        <span class="badge
+                            {% if item.statut == 'En attente' %}badge-attente
+                            {% elif item.statut == 'Diagnostic' %}badge-diagnostic
+                            {% elif item.statut == 'En cours' %}badge-cours
+                            {% elif item.statut == 'Terminé' %}badge-termine
+                            {% else %}badge-livre{% endif %}">
+                            {{ item.statut }}
+                        </span>
+                    </div>
+                    <p style="margin: 8px 0;"><strong>Panne / Diagnostic :</strong> {{ item.panne }}</p>
+                    <p style="margin: 4px 0; color: #64748b; font-size: 0.9rem;">
+                        Pièces : {{ "{:,.0f}".format(item.cout_pieces) }} FCFA |
+                        Main-d'œuvre : {{ "{:,.0f}".format(item.cout_main_oeuvre) }} FCFA
+                    </p>
+                    <p style="margin: 4px 0; font-weight: bold; color: #2563eb;">Total : {{ "{:,.0f}".format(item.total) }} FCFA</p>
+                    <a href="/facture/{{ item.id }}" target="_blank" style="font-size: 0.85rem; color: #7c3aed;">📄 Voir Facture</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aucune intervention enregistrée pour ce véhicule.</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

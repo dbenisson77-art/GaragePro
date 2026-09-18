@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des Mécaniciens - GaragePro</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background: #f1f5f9; color: #1e293b; }
+        .container { max-width: 1000px; margin: auto; }
+        .nav { margin-bottom: 20px; display: flex; gap: 15px; }
+        .nav a { text-decoration: none; color: #2563eb; font-weight: bold; background: white; padding: 8px 16px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        input, button { padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; }
+        button { background: #2563eb; color: white; border: none; font-weight: bold; cursor: pointer; grid-column: span 2; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }
+        th { background: #f8fafc; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="nav">
+        <a href="/">📊 Tableau de bord</a>
+        <a href="/clients">👤 Clients</a>
+        <a href="/vehicules">🚘 Véhicules</a>
+        <a href="/mecaniciens" style="background: #2563eb; color: white;">👨‍🔧 Mécaniciens</a>
+        <a href="/stock">📦 Stock & Pièces</a>
+    </div>
+
+    <div class="card">
+        <h2>👨‍🔧 Ajouter un Mécanicien / Technicien</h2>
+        <form method="POST">
+            <input type="text" name="nom" placeholder="Nom" required>
+            <input type="text" name="prenom" placeholder="Prénom" required>
+            <input type="text" name="specialite" placeholder="Spécialité (ex: Électricité, Moteur, Diagnostic)">
+            <input type="text" name="telephone" placeholder="Téléphone">
+            <button type="submit">Enregistrer le Mécanicien</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h2>📋 Équipe de l'Atelier</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Nom & Prénom</th>
+                    <th>Spécialité</th>
+                    <th>Téléphone</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in mecaniciens %}
+                <tr>
+                    <td>#{{ m.id }}</td>
+                    <td><strong>{{ m.prenom }} {{ m.nom }}</strong></td>
+                    <td>{{ m.specialite or 'Généraliste' }}</td>
+                    <td>{{ m.telephone or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

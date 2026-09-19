@@ -2,10 +2,91 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GaragePro - Accueil</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #1e293b;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        p.subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
 </head>
 <body>
-    <h1>Bienvenue sur GaragePro</h1>
-    <p>Votre application de gestion de garage fonctionne à merveille !</p>
+
+    <header>
+        <h1>GaragePro</h1>
+        <p class="subtitle">Votre application de gestion de garage fonctionne à merveille !</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h3>👥 Clients</h3>
+            <p>Gérez votre fichier client et leurs coordonnées.</p>
+            <a href="/clients" class="btn">Accéder</a>
+        </div>
+
+        <div class="card">
+            <h3>📦 Stock</h3>
+            <p>Suivez vos pièces détachées et le matériel.</p>
+            <a href="/stock" class="btn">Accéder</a>
+        </div>
+    </div>
+
 </body>
 </html>

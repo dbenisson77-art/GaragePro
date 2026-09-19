@@ -2,11 +2,161 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>GaragePro - Gestion des Stocks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GaragePro - Gestion du Stock</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #1e293b;
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .btn-retour {
+            background-color: #475569;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+        .btn-retour:hover {
+            background-color: #334155;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        h2 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        .btn-submit {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .btn-submit:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
 </head>
 <body>
-    <h1>Gestion du Stock</h1>
-    <p>Suivez vos pièces détachées, les entrées et les sorties de stock.</p>
-    <a href="/vues/index.html">Retour à l'accueil</a>
+
+    <header>
+        <h1>📦 Gestion du Stock</h1>
+        <a href="/" class="btn-retour">← Retour à l'accueil</a>
+    </header>
+
+    <div class="container">
+        <!-- Formulaire d'ajout de pièce -->
+        <div class="card">
+            <h2>Ajouter une pièce ou un article</h2>
+            <form onsubmit="event.preventDefault(); alert('Pièce enregistrée avec succès !');">
+                <div class="form-group">
+                    <label for="piece">Nom de la pièce :</label>
+                    <input type="text" id="piece" placeholder="Ex: Plaquettes de frein" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantite">Quantité :</label>
+                    <input type="number" id="quantite" placeholder="Ex: 10" required>
+                </div>
+                <div class="form-group">
+                    <label for="prix">Prix unitaire :</label>
+                    <input type="text" id="prix" placeholder="Ex: 15000 FCFA" required>
+                </div>
+                <button type="submit" class="btn-submit">Ajouter au stock</button>
+            </form>
+        </div>
+
+        <!-- Liste du stock -->
+        <div class="card">
+            <h2>Inventaire actuel</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Article / Pièce</th>
+                        <th>Quantité</th>
+                        <th>Prix Unitaire</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Filtre à huile</td>
+                        <td>12</td>
+                        <td>5 000 FCFA</td>
+                    </tr>
+                    <tr>
+                        <td>Huile moteur 5W40</td>
+                        <td>25</td>
+                        <td>8 000 FCFA</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </body>
 </html>

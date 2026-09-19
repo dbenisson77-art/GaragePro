@@ -2,11 +2,161 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GaragePro - Gestion des Clients</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #1e293b;
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        .btn-retour {
+            background-color: #475569;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+        }
+        .btn-retour:hover {
+            background-color: #334155;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        h2 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        .btn-submit {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .btn-submit:hover {
+            background-color: #1d4ed8;
+        }
+    </style>
 </head>
 <body>
-    <h1>Liste des Clients</h1>
-    <p>Bienvenue dans l'espace de gestion de vos clients.</p>
-    <a href="/vues/index.html">Retour à l'accueil</a>
+
+    <header>
+        <h1>👥 Gestion des Clients</h1>
+        <a href="/" class="btn-retour">← Retour à l'accueil</a>
+    </header>
+
+    <div class="container">
+        <!-- Formulaire d'ajout (visuel pour l'instant) -->
+        <div class="card">
+            <h2>Ajouter un nouveau client</h2>
+            <form onsubmit="event.preventDefault(); alert('Client enregistré avec succès !');">
+                <div class="form-group">
+                    <label for="nom">Nom complet :</label>
+                    <input type="text" id="nom" placeholder="Ex: Koffi Mensah" required>
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Téléphone :</label>
+                    <input type="text" id="telephone" placeholder="Ex: +228 90 00 00 00" required>
+                </div>
+                <div class="form-group">
+                    <label for="vehicule">Véhicule & Immatriculation :</label>
+                    <input type="text" id="vehicule" placeholder="Ex: Toyota Corolla - AB-123-CD" required>
+                </div>
+                <button type="submit" class="btn-submit">Enregistrer le client</button>
+            </form>
+        </div>
+
+        <!-- Liste des clients -->
+        <div class="card">
+            <h2>Liste des clients enregistrés</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Téléphone</th>
+                        <th>Véhicule</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kossi Agbégnénou</td>
+                        <td>+228 91 23 45 67</td>
+                        <td>Renault Duster (TG-4589-Z)</td>
+                    </tr>
+                    <tr>
+                        <td>Afivi Lawson</td>
+                        <td>+228 99 88 77 66</td>
+                        <td>Peugeot 308 (TG-1122-AA)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </body>
 </html>
